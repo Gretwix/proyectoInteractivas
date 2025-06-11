@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+@theme {
+    
+    --font-roboto: 'Roboto', sans-serif;
+}
+/*
+--color-bright-sun-50: #fefbe8;
+    --color-bright-sun-100: #fff6c2;
+    --color-bright-sun-200: #ffea89;
+    --color-bright-sun-300: #ffd234;
+    --color-bright-sun-400: #fdbf12;
+    --color-bright-sun-500: #eca606;
+    --color-bright-sun-600: #cc7e02;
+    --color-bright-sun-700: #a35805;
+    --color-bright-sun-800: #86450d;
+    --color-bright-sun-900: #723911;
+    --color-bright-sun-950: #431c05;
+
+*/
