@@ -1,4 +1,3 @@
-import { useNavigate } from "@tanstack/react-router";
 import logo from "../../assets/logoW.png";
 
 export default function Navigation() {
