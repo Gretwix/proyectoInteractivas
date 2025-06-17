@@ -1,4 +1,4 @@
-import LogIn from "../components/ui/logIn.tsx";
+import LogIn from "../components/pages/logIn.tsx";
 
 export const Route = createFileRoute({
   component: RouteComponent,

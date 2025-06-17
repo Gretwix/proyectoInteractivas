@@ -1,7 +1,9 @@
-// import { Link } from "@tanstack/react-router";
+// import { Link } from "@tanstack/react-router}";
+import { useNavigate } from "@tanstack/react-router";
 import logo from "../../assets/logo.png";
 
 export default function LogIn() {
+  const navigate = useNavigate();
   return (
     <div className="bg-[#E4BA36] min-h-screen flex flex-col items-center">
       <img src={logo} alt="" className="mx-auto w-36 h-36" />
@@ -28,7 +30,10 @@ export default function LogIn() {
         Iniciar sesión
       </button>
 
-      <button className="w-72 h-12 rounded-xl font-roboto font-extrabold text-lg mt-[10px] cursor-pointer">
+      <button
+        className="w-72 h-12 rounded-xl font-roboto font-extrabold text-lg mt-[10px] cursor-pointer"
+        onClick={() => navigate({ to: "/register" })}
+      >
         Registrarse
       </button>
 
