@@ -1,6 +1,7 @@
 import logo from "../../assets/logo.png";
-
+import { useNavigate } from "@tanstack/react-router";
 export default function Register() {
+  const navigate = useNavigate();
   return (
     <div className="bg-[#E4BA36] min-h-screen flex flex-col items-center">
       
@@ -42,7 +43,7 @@ export default function Register() {
         />
       </div>
 
-      <button className="w-72 h-12 bg-black text-white rounded-2xl font-roboto font-extrabold text-lg mt-[40px] cursor-pointer">
+      <button className="w-72 h-12 bg-black text-white rounded-2xl font-roboto font-extrabold text-lg mt-[40px] cursor-pointer" onClick={() => navigate({ to: "/container" })}>
         Registrarse
       </button>
 

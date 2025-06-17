@@ -26,7 +26,7 @@ export default function LogIn() {
         />
       </div>
 
-      <button className="w-72 h-12 bg-black text-white rounded-2xl font-roboto font-extrabold text-lg mt-[40px] cursor-pointer">
+      <button className="w-72 h-12 bg-black text-white rounded-2xl font-roboto font-extrabold text-lg mt-[40px] cursor-pointer"onClick={() => navigate({ to: "/container" })}>
         Iniciar sesión
       </button>
 
