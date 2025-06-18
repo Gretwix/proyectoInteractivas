@@ -21,60 +21,56 @@ export default function Inicio({ botones }: InicioProps) {
     return <span className="text-3xl font-bold mb-6 font-roboto">{diaActual}</span>;
   }
   return (
-    <div className='bg-[#E4BA36]'>
-      <img src="src/assets/image 16.png" alt="" className="w-full max-w-screen-sm h-auto mx-auto block" />
-
-
     <Layout>
-      <div className="max-w-4xl mx-auto p-6 space-y-4 ">
-        
-        <div className="flex justify-between gap-4 w-full">
-      <div className="flex flex-col items-center">
-        <label className="text-lg font-bold">D</label>
-        <input type="checkbox" className="w-8 h-8 cursor-pointer" />
-      </div>
+      <main className="bg-[#E4BA36] min-h-screen">
+        <img src="src/assets/image16.png" alt="" className="w-full max-w-screen-sm h-auto mx-auto block" />
+        <div className="max-w-4xl mx-auto p-6 space-y-4 ">
+          <div className="flex justify-between gap-4 w-full">
+            <div className="flex flex-col items-center">
+              <label className="text-lg font-bold">D</label>
+              <input type="checkbox" className="w-8 h-8 cursor-pointer" />
+            </div>
 
-      <div className="flex flex-col items-center">
-        <label className="text-lg font-bold">L</label>
-        <input type="checkbox" className="w-8 h-8 cursor-pointer" />
-      </div>
-      
-      <div className="flex flex-col items-center">
-        <label className="text-lg font-bold">M</label>
-        <input type="checkbox" className="w-8 h-8 cursor-pointer" />
-      </div>
-      
-      <div className="flex flex-col items-center">
-        <label className="text-lg font-bold">X</label>
-        <input type="checkbox" className="w-8 h-8 cursor-pointer" />
-      </div>
-      
-      <div className="flex flex-col items-center">
-        <label className="text-lg font-bold">J</label>
-        <input type="checkbox" className="w-8 h-8 cursor-pointer" />
-      </div>
-      
-      <div className="flex flex-col items-center">
-        <label className="text-lg font-bold">V</label>
-        <input type="checkbox" className="w-8 h-8 cursor-pointer" />
-      </div>
-      <div className="flex flex-col items-center">
-        <label className="text-lg font-bold">S</label>
-        <input type="checkbox" className="w-8 h-8 cursor-pointer" />
-      </div>
-    
-    </div>
-    <h1 className=""/><DiaDeLaSemana />
-        {botones.map((btn, i) => (
-          <AgogeInicio
-            key={i}
-            title={btn.title}
-            description={btn.description}
-            onClick={() => console.log(`Click en ${btn.title}`)}
-          />
-        ))}
-      </div>
+            <div className="flex flex-col items-center">
+              <label className="text-lg font-bold">L</label>
+              <input type="checkbox" className="w-8 h-8 cursor-pointer" />
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <label className="text-lg font-bold">M</label>
+              <input type="checkbox" className="w-8 h-8 cursor-pointer" />
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <label className="text-lg font-bold">X</label>
+              <input type="checkbox" className="w-8 h-8 cursor-pointer" />
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <label className="text-lg font-bold">J</label>
+              <input type="checkbox" className="w-8 h-8 cursor-pointer" />
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <label className="text-lg font-bold">V</label>
+              <input type="checkbox" className="w-8 h-8 cursor-pointer" />
+            </div>
+            <div className="flex flex-col items-center">
+              <label className="text-lg font-bold">S</label>
+              <input type="checkbox" className="w-8 h-8 cursor-pointer" />
+            </div>
+          </div>
+          <h1 className=""/><DiaDeLaSemana />
+          {botones.map((btn, i) => (
+            <AgogeInicio
+              key={i}
+              title={btn.title}
+              description={btn.description}
+              onClick={() => console.log(`Click en ${btn.title}`)}
+            />
+          ))}
+        </div>
+      </main>
     </Layout>
-    </div>
   );
 }
