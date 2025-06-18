@@ -23,7 +23,7 @@ export default function Inicio({ botones }: InicioProps) {
   return (
     <Layout>
       <main className="bg-[#E4BA36] min-h-screen">
-        <img src="src/assets/image16.png" alt="" className="w-full max-w-screen-sm h-auto mx-auto block" />
+        <img src="/image16.png" alt="" className="w-full max-w-screen-sm h-auto mx-auto block" />
         <div className="max-w-4xl mx-auto p-6 space-y-4 ">
           <div className="flex justify-between gap-4 w-full">
             <div className="flex flex-col items-center">
