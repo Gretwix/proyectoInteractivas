@@ -5,7 +5,7 @@ export default function Actividades() {
         <div>
             <h1 className="text-3xl font-bold mb-6 font-roboto text-center mt-8">Actividades</h1>
             <div className="max-w-4xl mx-auto p-6 space-y-4">
-                <div className="bg-[#E4BA36] p-4 rounded-3xl font-roboto flex items-center justify-between">
+                <div className="bg-[#E4BA36] p-4 rounded-3xl font-roboto flex items-center justify-between mb-9">
                     <div className="w-full max-w-xs">
                         <h2 className="text-xl font-bold mb-2 text-white">Agoge Físico</h2>
                         <button className="bg-black text-center p-2 rounded-4xl cursor-pointer w-full">
@@ -14,7 +14,7 @@ export default function Actividades() {
                     </div>
                     <img src="/agogeFisico.png" alt="" className=" max-h-24" />
                 </div>
-                <div className="bg-[#5C637D] p-4 rounded-3xl font-roboto flex items-center justify-between">
+                <div className="bg-[#5C637D] p-4 rounded-3xl font-roboto flex items-center justify-between mb-9">
                     <div className="w-full max-w-xs">
                         <h2 className="text-xl font-bold mb-2 text-white">Agoge Intelectual</h2>
                         <button className="bg-black text-center p-2 rounded-4xl cursor-pointer w-full">
