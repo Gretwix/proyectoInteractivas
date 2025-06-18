@@ -12,6 +12,7 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ActividadesRouteImport } from './routes/actividades'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as InicioRouteImport } from './routes/Inicio'
 import { Route as IndexRouteImport } from './routes/index'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActividadesRoute = ActividadesRouteImport.update({
+  id: '/actividades',
+  path: '/actividades',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -41,12 +47,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/Inicio': typeof InicioRoute
   '/about': typeof AboutRoute
+  '/actividades': typeof ActividadesRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/Inicio': typeof InicioRoute
   '/about': typeof AboutRoute
+  '/actividades': typeof ActividadesRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRoutesById {
@@ -54,20 +62,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/Inicio': typeof InicioRoute
   '/about': typeof AboutRoute
+  '/actividades': typeof ActividadesRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Inicio' | '/about' | '/register'
+  fullPaths: '/' | '/Inicio' | '/about' | '/actividades' | '/register'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Inicio' | '/about' | '/register'
-  id: '__root__' | '/' | '/Inicio' | '/about' | '/register'
+  to: '/' | '/Inicio' | '/about' | '/actividades' | '/register'
+  id: '__root__' | '/' | '/Inicio' | '/about' | '/actividades' | '/register'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   InicioRoute: typeof InicioRoute
   AboutRoute: typeof AboutRoute
+  ActividadesRoute: typeof ActividadesRoute
   RegisterRoute: typeof RegisterRoute
 }
 
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/actividades': {
+      id: '/actividades'
+      path: '/actividades'
+      fullPath: '/actividades'
+      preLoaderRoute: typeof ActividadesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -131,6 +148,15 @@ declare module './routes/about' {
     FileRoutesByPath['/about']['fullPath']
   >
 }
+declare module './routes/actividades' {
+  const createFileRoute: CreateFileRoute<
+    '/actividades',
+    FileRoutesByPath['/actividades']['parentRoute'],
+    FileRoutesByPath['/actividades']['id'],
+    FileRoutesByPath['/actividades']['path'],
+    FileRoutesByPath['/actividades']['fullPath']
+  >
+}
 declare module './routes/register' {
   const createFileRoute: CreateFileRoute<
     '/register',
@@ -145,6 +171,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   InicioRoute: InicioRoute,
   AboutRoute: AboutRoute,
+  ActividadesRoute: ActividadesRoute,
   RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport

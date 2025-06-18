@@ -13,7 +13,7 @@ interface InicioProps {
 
 export default function Inicio({ botones }: InicioProps) {
   // Componente para mostrar el día de la semana
-  // Generado con IA
+  // Generado con IA - A
   const DiaDeLaSemana: React.FC = () => {
     const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
     const fechaActual = new Date();
