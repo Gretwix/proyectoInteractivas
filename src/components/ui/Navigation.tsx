@@ -43,7 +43,7 @@ export default function Navigation() {
         <img src="/logoW.png" alt="" className="w-15 h-15 mb-4 cursor-pointer" onClick={() => { setMenuOpen(false); navigate({ to: "/Inicio" }); }} />
         <button className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer mb-10" onClick={() => { setMenuOpen(false); navigate({ to: "/actividades" }); }}>Categoria</button>
         <button className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer mb-10" onClick={() => setMenuOpen(false)}>Progreso</button>
-        <button className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer" onClick={() => setMenuOpen(false)}>Perfil</button>
+         <button className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer"onClick={() => {setMenuOpen(false);navigate({ to: "/profile" });}}>Perfil</button>
       </div>
     </nav>
   );
