@@ -1,7 +1,9 @@
 import Layout from "../ui/Layout";
-
+import { useNavigate } from "@tanstack/react-router";
 
 export default function Profile() {
+      const navigate = useNavigate();
+      
   return (
     <Layout>
       <div className="flex flex-col items-center px-6 py-10 min-h-screen justify-between">
@@ -64,7 +66,7 @@ export default function Profile() {
     <span className="text-xl">{">"}</span>
   </button>
 
-  <button className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
+  <button onClick={() => navigate({ to: "/Inicio" })} className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
     <span className="flex items-center gap-10">
       <div className="w-6 h-6 flex items-center justify-center">
         <img src="/src/assets/home.png" alt="Inicio" className="max-w-full max-h-full object-contain"
