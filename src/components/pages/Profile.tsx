@@ -10,7 +10,7 @@ export default function Profile() {
         <div className="flex flex-col items-center w-full">
           {/* Imagen de perfil */}
           <img
-            src="/src/assets/AvatarImg.png"
+            src="/public/AvatarImg.png"
             alt="Spartan Avatar"
             className="w-36 h-36 rounded-full mb-6"
           />
@@ -58,7 +58,7 @@ export default function Profile() {
   <button className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
     <span className="flex items-center gap-7.5 ">
       <div className="w-8 h-8 flex items-center justify-center ">
-        <img src="/src/assets/editar.png" alt="Editar" className="max-w-full max-h-full object-contain"
+        <img src="/public/editar.png" alt="Editar" className="max-w-full max-h-full object-contain"
         />
     </div>
     <span className="text-lg">Editar perfil</span>
@@ -69,7 +69,7 @@ export default function Profile() {
   <button onClick={() => navigate({ to: "/Inicio" })} className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
     <span className="flex items-center gap-10">
       <div className="w-6 h-6 flex items-center justify-center">
-        <img src="/src/assets/home.png" alt="Inicio" className="max-w-full max-h-full object-contain"
+        <img src="/public/home.png" alt="Inicio" className="max-w-full max-h-full object-contain"
         />
       </div>
       <span className="text-lg">Inicio</span>
@@ -80,7 +80,7 @@ export default function Profile() {
   <button className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
     <span className="flex items-center gap-10">
       <div className="w-6 h-6 flex items-center justify-center">
-        <img src="/src/assets/exit.png" alt="Cerrar sesión" className="max-w-full max-h-full object-contain"
+        <img src="/public/exit.png" alt="Cerrar sesión" className="max-w-full max-h-full object-contain"
         />
       </div>
       <span className="text-lg">Cerrar sesión</span>
