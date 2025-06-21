@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "../ui/Layout";
 
 const actividades = [
@@ -127,7 +126,7 @@ export default function AgogeFisicoActividades({
             </h1>
             <div className="w-10"></div>
           </div>
-          {actividades.map((act, idx) => (
+          {actividades.map((act) => (
             <div
               key={act.titulo}
               className="flex items-center bg-white rounded-2xl shadow-md mb-6 overflow-hidden"
