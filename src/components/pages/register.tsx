@@ -4,15 +4,13 @@ export default function Register() {
   const navigate = useNavigate();
   return (
     <div className="bg-[#E4BA36] min-h-screen flex flex-col items-center">
-      
-  <div className="mr-70">
-      <img src={logo} alt="" className="w-12 h-12" />
-      <h1 className="font-roboto font-bold">Streakly</h1>
-    </div>
+      <div className="mr-70">
+        <img src={logo} alt="" className="w-12 h-12" />
+        <h1 className="font-roboto font-bold">Streakly</h1>
+      </div>
 
-    <span className="font-roboto text-4xl font-extrabold ">¡Bienvenido!</span>
-  
-      
+      <span className="font-roboto text-4xl font-extrabold ">¡Bienvenido!</span>
+
       <div className="w-72 h-12 mx-auto bg-white rounded-xl mt-[80px]">
         <input
           type="text"
@@ -43,13 +41,14 @@ export default function Register() {
         />
       </div>
 
-      <button className="w-72 h-12 bg-black text-white rounded-2xl font-roboto font-extrabold text-lg mt-[40px] cursor-pointer" onClick={() => navigate({ to: "/Inicio" })}>
+      <button
+        className="w-72 h-12 bg-black text-white rounded-2xl font-roboto font-extrabold text-lg mt-[40px] cursor-pointer"
+        onClick={() => navigate({ to: "/Inicio" })}
+      >
         Registrarse
       </button>
 
-      <div
-        className="w-72 h-12 font-roboto italic text-lg mt-[20px] text-center"
-      >
+      <div className="w-72 h-12 font-roboto italic text-lg mt-[20px] text-center">
         "Un día más en tu camino a la victoria"
       </div>
 

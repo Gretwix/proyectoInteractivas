@@ -11,7 +11,10 @@ function RootComponent() {
   const location = useLocation();
   const pathname = location.pathname;
   const hideLayout =
-    pathname === "/login" || pathname === "/register" || pathname === "/profile" || pathname === "/";
+    pathname === "/login" ||
+    pathname === "/register" ||
+    pathname === "/profile" ||
+    pathname === "/";
   return (
     <React.Fragment>
       {!hideLayout && <Navigation />}

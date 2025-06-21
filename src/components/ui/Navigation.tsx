@@ -37,13 +37,42 @@ export default function Navigation() {
       </div>
       {/* Panel descendente generado con IA - A*/}
       <div
-        className={`fixed top-0 left-0 w-full h-screen bg-black bg-opacity-95 flex flex-col items-center justify-center gap-6 transition-transform duration-300 z-10 ${menuOpen ? 'translate-y-0' : '-translate-y-full'}`}
-        style={{ pointerEvents: menuOpen ? 'auto' : 'none' }}
+        className={`fixed top-0 left-0 w-full h-screen bg-black bg-opacity-95 flex flex-col items-center justify-center gap-6 transition-transform duration-300 z-10 ${menuOpen ? "translate-y-0" : "-translate-y-full"}`}
+        style={{ pointerEvents: menuOpen ? "auto" : "none" }}
       >
-        <img src="/logoW.png" alt="" className="w-15 h-15 mb-4 cursor-pointer" onClick={() => { setMenuOpen(false); navigate({ to: "/Inicio" }); }} />
-        <button className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer mb-10" onClick={() => { setMenuOpen(false); navigate({ to: "/actividades" }); }}>Categoria</button>
-        <button className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer mb-10" onClick={() => setMenuOpen(false)}>Progreso</button>
-         <button className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer"onClick={() => {setMenuOpen(false);navigate({ to: "/profile" });}}>Perfil</button>
+        <img
+          src="/logoW.png"
+          alt=""
+          className="w-15 h-15 mb-4 cursor-pointer"
+          onClick={() => {
+            setMenuOpen(false);
+            navigate({ to: "/Inicio" });
+          }}
+        />
+        <button
+          className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer mb-10"
+          onClick={() => {
+            setMenuOpen(false);
+            navigate({ to: "/actividades" });
+          }}
+        >
+          Categoria
+        </button>
+        <button
+          className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer mb-10"
+          onClick={() => setMenuOpen(false)}
+        >
+          Progreso
+        </button>
+        <button
+          className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer"
+          onClick={() => {
+            setMenuOpen(false);
+            navigate({ to: "/profile" });
+          }}
+        >
+          Perfil
+        </button>
       </div>
     </nav>
   );
