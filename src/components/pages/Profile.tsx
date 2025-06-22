@@ -53,13 +53,10 @@ export default function Profile() {
 
           {/* Botones */}
           <div className="flex flex-col gap-5 w-full max-w-sm mb-10">
-            <button className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
+            <button  onClick={() => navigate({ to: "/editarperfil" })} className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
               <span className="flex items-center gap-7.5 ">
                 <div className="w-8 h-8 flex items-center justify-center ">
-                  <img
-                    src="/public/editar.png"
-                    alt="Editar"
-                    className="max-w-full max-h-full object-contain"
+                  <img src="/public/editar.png" alt="Editar" className="max-w-full max-h-full object-contain"
                   />
                 </div>
                 <span className="text-lg">Editar perfil</span>

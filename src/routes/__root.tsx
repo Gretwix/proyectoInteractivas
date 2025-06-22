@@ -14,6 +14,7 @@ function RootComponent() {
     pathname === "/login" ||
     pathname === "/register" ||
     pathname === "/profile" ||
+     pathname === "/editarperfil" ||
     pathname === "/";
   return (
     <React.Fragment>
