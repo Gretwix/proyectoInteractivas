@@ -13,6 +13,7 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as EditarperfilRouteImport } from './routes/editarperfil'
 import { Route as ActividadesRouteImport } from './routes/actividades'
 import { Route as AboutRouteImport } from './routes/about'
@@ -27,6 +28,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditarperfilRoute = EditarperfilRouteImport.update({
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/actividades': typeof ActividadesRoute
   '/editarperfil': typeof EditarperfilRoute
+  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/actividades': typeof ActividadesRoute
   '/editarperfil': typeof EditarperfilRoute
+  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/actividades': typeof ActividadesRoute
   '/editarperfil': typeof EditarperfilRoute
+  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/actividades'
     | '/editarperfil'
+    | '/login'
     | '/profile'
     | '/register'
   fileRoutesByTo: FileRoutesByTo
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/actividades'
     | '/editarperfil'
+    | '/login'
     | '/profile'
     | '/register'
   id:
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/actividades'
     | '/editarperfil'
+    | '/login'
     | '/profile'
     | '/register'
   fileRoutesById: FileRoutesById
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ActividadesRoute: typeof ActividadesRoute
   EditarperfilRoute: typeof EditarperfilRoute
+  LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       path: '/editarperfil'
       fullPath: '/editarperfil'
       preLoaderRoute: typeof EditarperfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -222,6 +242,15 @@ declare module './routes/editarperfil' {
     FileRoutesByPath['/editarperfil']['fullPath']
   >
 }
+declare module './routes/login' {
+  const createFileRoute: CreateFileRoute<
+    '/login',
+    FileRoutesByPath['/login']['parentRoute'],
+    FileRoutesByPath['/login']['id'],
+    FileRoutesByPath['/login']['path'],
+    FileRoutesByPath['/login']['fullPath']
+  >
+}
 declare module './routes/profile' {
   const createFileRoute: CreateFileRoute<
     '/profile',
@@ -247,6 +276,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ActividadesRoute: ActividadesRoute,
   EditarperfilRoute: EditarperfilRoute,
+  LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
 }

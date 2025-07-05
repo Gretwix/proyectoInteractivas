@@ -1,8 +1,35 @@
 import Layout from "../ui/Layout";
 import { useNavigate } from "@tanstack/react-router";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Profile() {
   const navigate = useNavigate();
+
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://proyectofinal.test/api/v1/logout", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al cerrar sesión");
+      }
+
+      return response.json();
+    },
+    onSuccess: () => {
+      localStorage.removeItem("token");
+      navigate({ to: "/login" });
+    },
+    onError: (error: any) => {
+      alert(error.message || "Error al cerrar sesión");
+    },
+  });
 
   return (
     <Layout>
@@ -53,10 +80,16 @@ export default function Profile() {
 
           {/* Botones */}
           <div className="flex flex-col gap-5 w-full max-w-sm mb-10">
-            <button  onClick={() => navigate({ to: "/editarperfil" })} className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
+            <button
+              onClick={() => navigate({ to: "/editarperfil" })}
+              className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full"
+            >
               <span className="flex items-center gap-7.5 ">
                 <div className="w-8 h-8 flex items-center justify-center ">
-                  <img src="/public/editar.png" alt="Editar" className="max-w-full max-h-full object-contain"
+                  <img
+                    src="/public/editar.png"
+                    alt="Editar"
+                    className="max-w-full max-h-full object-contain"
                   />
                 </div>
                 <span className="text-lg">Editar perfil</span>
@@ -81,7 +114,11 @@ export default function Profile() {
               <span className="text-xl">{">"}</span>
             </button>
 
-            <button className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full">
+            <button
+              onClick={() => logoutMutation.mutate()}
+              className="flex justify-between items-center bg-black text-white px-5 py-4 rounded-full font-roboto w-full"
+              disabled={logoutMutation.isPending}
+            >
               <span className="flex items-center gap-10">
                 <div className="w-6 h-6 flex items-center justify-center">
                   <img
@@ -90,7 +127,9 @@ export default function Profile() {
                     className="max-w-full max-h-full object-contain"
                   />
                 </div>
-                <span className="text-lg">Cerrar sesión</span>
+                <span className="text-lg">
+                  {logoutMutation.isPending ? "Cerrando..." : "Cerrar sesión"}
+                </span>
               </span>
               <span className="text-xl">{">"}</span>
             </button>
