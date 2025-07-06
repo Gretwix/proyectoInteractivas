@@ -16,9 +16,28 @@ export default function AgogeLibreActividades({
   // Estado para almacenar cambios temporales al editar
   const [tempRutinas, setTempRutinas] = useState<{ titulo: string; descripcion: string }[]>([]);
 
+  // Al cargar rutinas, sincroniza los estados auxiliares
+  React.useEffect(() => {
+    setEditando(Array(rutinas.length).fill(false));
+    setTempRutinas(rutinas.map(r => ({ ...r })));
+  }, []);
+
   // Sincroniza rutinas con localStorage cada vez que cambian
   React.useEffect(() => {
     localStorage.setItem("agogeLibreRutinas", JSON.stringify(rutinas));
+    // Si cambian rutinas (agregar/eliminar), ajusta longitud de auxiliares
+    setEditando(prev => {
+      if (rutinas.length !== prev.length) {
+        return Array(rutinas.length).fill(false);
+      }
+      return prev;
+    });
+    setTempRutinas(prev => {
+      if (rutinas.length !== prev.length) {
+        return rutinas.map(r => ({ ...r }));
+      }
+      return prev;
+    });
   }, [rutinas]);
 
   // Agregar una rutina nueva (máximo 3)
@@ -170,6 +189,19 @@ export default function AgogeLibreActividades({
                             onClick={() => handleEliminarRutina(idx)}
                           >
                             Eliminar rutina
+                          </button>
+                          <button
+                            className="px-3 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700 font-roboto"
+                            onClick={() => {
+                              const stored = localStorage.getItem("agogeInicioRutinas");
+                              let rutinas = stored ? JSON.parse(stored) : [];
+                              if (!rutinas.some((r: any) => r.titulo === rutinas[idx].titulo)) {
+                                rutinas.push({ titulo: rutinas[idx].titulo, descripcion: rutinas[idx].descripcion });
+                                localStorage.setItem("agogeInicioRutinas", JSON.stringify(rutinas));
+                              }
+                            }}
+                          >
+                            Agregar a inicio
                           </button>
                         </div>
                       </div>

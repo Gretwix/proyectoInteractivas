@@ -5,21 +5,21 @@ const actividades = [
     titulo: "Entrenamiento de fuerza",
     descripcion:
       "Aprender ejercicios de fuerza y resistencia para mejorar tus habilidades físicas.",
-    completado: 16,
+    completado: 0,
     icon: "/agogeFisico.png",
   },
   {
     titulo: "Cardio",
     descripcion:
       "Realizar ejercicios de cardio para mejorar tu condición física y aumentar tu resistencia cardiovascular.",
-    completado: 45,
+    completado: 0,
     icon: "/agogeFisico.png",
   },
   {
     titulo: "Flexibilidad",
     descripcion:
       "Practicar ejercicios de flexibilidad para mejorar tu coordinación y flexibilidad muscular.",
-    completado: 1,
+    completado: 0,
     icon: "/agogeFisico.png",
   },
 ];
@@ -150,6 +150,20 @@ export default function AgogeFisicoActividades({
                     <span key={i}>{icon}</span>
                   ))}
                 </div>
+                <button
+                  className="mt-2 px-3 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700 font-roboto"
+                  onClick={() => {
+                    const stored = localStorage.getItem("agogeInicioRutinas");
+                    let rutinas = stored ? JSON.parse(stored) : [];
+                    // Evita duplicados por título
+                    if (!rutinas.some((r: any) => r.titulo === act.titulo)) {
+                      rutinas.push({ titulo: act.titulo, descripcion: act.descripcion });
+                      localStorage.setItem("agogeInicioRutinas", JSON.stringify(rutinas));
+                    }
+                  }}
+                >
+                  Agregar a inicio
+                </button>
               </div>
               <div className="bg-gray-200 w-32 flex flex-col items-center justify-center h-full py-6">
                 <span className="text-red-600 text-xl font-bold">

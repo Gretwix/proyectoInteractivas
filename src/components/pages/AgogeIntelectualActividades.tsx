@@ -5,19 +5,19 @@ const actividades = [
     titulo: "Lectura",
     descripcion:
       "Lee un capítulo de un libro o artículo relevante para tu desarrollo.",
-    completado: 30,
+    completado: 0,
     icon: "/agogeIntelectual.png",
   },
   {
     titulo: "Escritura",
     descripcion: "Dedica tiempo a escribir reflexiones, ideas o un diario.",
-    completado: 60,
+    completado: 0,
     icon: "/agogeIntelectual.png",
   },
   {
     titulo: "Resolución de problemas",
     descripcion: "Resuelve ejercicios de lógica, matemáticas o acertijos.",
-    completado: 10,
+    completado: 0,
     icon: "/agogeIntelectual.png",
   },
 ];
@@ -148,6 +148,19 @@ export default function AgogeIntelectualActividades({
                     <span key={i}>{icon}</span>
                   ))}
                 </div>
+                <button
+                  className="mt-2 px-3 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700 font-roboto"
+                  onClick={() => {
+                    const stored = localStorage.getItem("agogeInicioRutinas");
+                    let rutinas = stored ? JSON.parse(stored) : [];
+                    if (!rutinas.some((r: any) => r.titulo === act.titulo)) {
+                      rutinas.push({ titulo: act.titulo, descripcion: act.descripcion });
+                      localStorage.setItem("agogeInicioRutinas", JSON.stringify(rutinas));
+                    }
+                  }}
+                >
+                  Agregar a inicio
+                </button>
               </div>
               <div className="bg-gray-200 w-32 flex flex-col items-center justify-center h-full py-6">
                 <span className="text-red-600 text-xl font-bold">

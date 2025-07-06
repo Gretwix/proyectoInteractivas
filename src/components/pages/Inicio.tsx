@@ -9,9 +9,10 @@ interface Boton {
 
 interface InicioProps {
   botones: Boton[];
+  agregarRutina?: () => void;
 }
 
-export default function Inicio({ botones }: InicioProps) {
+export default function Inicio({ botones, agregarRutina }: InicioProps) {
   // Componente para mostrar el día de la semana
   // Generado con IA - A
   const DiaDeLaSemana: React.FC = () => {
@@ -76,6 +77,7 @@ export default function Inicio({ botones }: InicioProps) {
           </div>
           <h1 className="" />
           <DiaDeLaSemana />
+
           {botones.map((btn, i) => (
             <AgogeInicio
               key={i}
