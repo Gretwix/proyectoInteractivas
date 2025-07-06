@@ -7,9 +7,9 @@ import { Route as InicioRoute } from "../../routes/Inicio";
 export default function LogIn() {
   const navigate = useNavigate();
 
- 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState<any>({});
 
   const loginMutation = useMutation({
     mutationFn: async () => {
@@ -22,18 +22,31 @@ export default function LogIn() {
         body: JSON.stringify({ login, password }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Credenciales incorrectas");
+        throw data; // Lanza todo el error para el onError
       }
 
-      return response.json();
+      return data;
     },
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token); 
+      setErrors({});
+      localStorage.setItem("token", data.token);
       navigate({ to: InicioRoute.to }); // Redirige a la página principal
     },
     onError: (error: any) => {
-      alert(error.message || "Ocurrió un error inesperado");
+      // Si es validación (faltan datos)
+      if (error?.errors) {
+        setErrors(error.errors);
+      }
+      // Si es credenciales incorrectas u otro error
+      else if (error?.message) {
+        // El mensaje lo ponemos en errors.password para mostrarlo abajo de la contraseña
+        setErrors({ password: [error.message] });
+      } else {
+        setErrors({ password: ["Ocurrió un error inesperado"] });
+      }
     },
   });
 
@@ -42,24 +55,35 @@ export default function LogIn() {
       <img src={logo} alt="Logo de Streakly" className="mx-auto w-36 h-36 mt-6" />
       <h1 className="text-center text-3xl font-roboto font-bold">Streakly</h1>
 
+      {/* Usuario/correo */}
       <div className="w-72 h-12 mx-auto bg-white rounded-xl mt-[100px]">
         <input
           type="text"
           placeholder="Usuario o correo"
           value={login}
           onChange={(e) => setLogin(e.target.value)}
-          className="w-full h-full px-4 py-2 bg-white font-bold placeholder:font-normal text-gray-600 focus:outline-none rounded-xl"
+          className={`w-full h-full px-4 py-2 bg-white font-bold placeholder:font-normal text-gray-600 focus:outline-none rounded-xl
+            ${errors.login ? "border border-red-500" : ""}`}
         />
+        {errors.login && (
+          <div className="text-red-500 text-xs px-2">{errors.login[0]}</div>
+        )}
       </div>
 
+      {/* Contraseña */}
       <div className="w-72 h-12 mx-auto bg-white rounded-xl mt-[20px]">
         <input
           type="password"
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full h-full px-4 py-2 bg-white text-gray-600 focus:outline-none rounded-xl"
+          className={`w-full h-full px-4 py-2 bg-white text-gray-600 focus:outline-none rounded-xl
+            ${errors.password ? "border border-red-500" : ""}`}
         />
+        {/* Siempre muestra el error aquí, sea de validación o credenciales */}
+        {errors.password && (
+          <div className="text-red-500 text-xs px-2">{errors.password[0]}</div>
+        )}
       </div>
 
       <button

@@ -1,6 +1,6 @@
 import Layout from "../ui/Layout";
 import { useNavigate } from "@tanstack/react-router";
-import { useState, useEffect } from "react"; // <-- Importa useEffect aquí
+import { useState, useEffect } from "react"; 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function EditarPerfil() {
