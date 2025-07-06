@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Layout from "../ui/Layout";
 
 export default function AgogeLibreActividades({
@@ -7,27 +7,45 @@ export default function AgogeLibreActividades({
   onBack: () => void;
 }) {
   // Estado dinámico para rutinas
-  const [rutinas, setRutinas] = useState<{ titulo: string; descripcion: string }[]>([]);
+  const [rutinas, setRutinas] = useState<{ titulo: string; descripcion: string }[]>(() => {
+    const data = localStorage.getItem("agogeLibreRutinas");
+    return data ? JSON.parse(data) : [];
+  });
   // Estado para controlar edición por rutina
   const [editando, setEditando] = useState<boolean[]>([]);
   // Estado para almacenar cambios temporales al editar
   const [tempRutinas, setTempRutinas] = useState<{ titulo: string; descripcion: string }[]>([]);
 
+  // Sincroniza rutinas con localStorage cada vez que cambian
+  React.useEffect(() => {
+    localStorage.setItem("agogeLibreRutinas", JSON.stringify(rutinas));
+  }, [rutinas]);
+
   // Agregar una rutina nueva (máximo 3)
   const handleAgregarRutina = () => {
     if (rutinas.length < 3) {
-      setRutinas((prev) => [...prev, { titulo: "", descripcion: "" }]);
+      setRutinas((prev) => {
+        const nuevas = [...prev, { titulo: "", descripcion: "" }];
+        localStorage.setItem("agogeLibreRutinas", JSON.stringify(nuevas));
+        return nuevas;
+      });
       setEditando((prev) => [...prev, true]);
       setTempRutinas((prev) => [...prev, { titulo: "", descripcion: "" }]);
     }
   };
 
+
   // Eliminar rutina
   const handleEliminarRutina = (idx: number) => {
-    setRutinas((prev) => prev.filter((_, i) => i !== idx));
+    setRutinas((prev) => {
+      const nuevas = prev.filter((_, i) => i !== idx);
+      localStorage.setItem("agogeLibreRutinas", JSON.stringify(nuevas));
+      return nuevas;
+    });
     setEditando((prev) => prev.filter((_, i) => i !== idx));
     setTempRutinas((prev) => prev.filter((_, i) => i !== idx));
   };
+
 
   // Editar rutina
   const handleEdit = (idx: number) => {
@@ -37,9 +55,14 @@ export default function AgogeLibreActividades({
 
   // Guardar cambios de rutina
   const handleGuardar = (idx: number) => {
-    setRutinas((prev) => prev.map((r, i) => (i === idx ? tempRutinas[i] : r)));
+    setRutinas((prev) => {
+      const nuevas = prev.map((r, i) => (i === idx ? tempRutinas[i] : r));
+      localStorage.setItem("agogeLibreRutinas", JSON.stringify(nuevas));
+      return nuevas;
+    });
     setEditando((prev) => prev.map((e, i) => (i === idx ? false : e)));
   };
+
 
   // Cancelar edición de rutina
   const handleCancelar = (idx: number) => {
