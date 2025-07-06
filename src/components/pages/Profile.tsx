@@ -1,13 +1,30 @@
 import Layout from "../ui/Layout";
 import { useNavigate } from "@tanstack/react-router";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export default function Profile() {
   const navigate = useNavigate();
 
+  // Obtener token guardado al hacer login
+  const token = localStorage.getItem("token");
+
+  // Fetch para obtener el usuario autenticado
+  const { data: user, isLoading, error } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const response = await fetch("http://proyectofinal.test/api/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      });
+      if (!response.ok) throw new Error("No se pudo cargar el usuario");
+      return response.json();
+    },
+  });
+  //appi logout
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      const token = localStorage.getItem("token");
       const response = await fetch("http://proyectofinal.test/api/v1/logout", {
         method: "POST",
         headers: {
@@ -43,7 +60,12 @@ export default function Profile() {
           />
 
           {/* Nombre y frase */}
-          <h1 className="text-3xl font-bold font-roboto mb-1">Alejandro</h1>
+          {error && (
+            <p className="text-red-500 mb-2">Error al cargar usuario</p>
+          )}
+          <h1 className="text-3xl font-bold font-roboto mb-1">
+            {isLoading ? "Cargando..." : user?.name}
+          </h1>
           <p className="text-gray-800 font-roboto text-lg mb-8 text-center">
             Entrena como un espartano
           </p>
@@ -55,7 +77,9 @@ export default function Profile() {
                 <p className="font-bold text-sm text-black">Edad</p>
               </div>
               <div className="flex-1 flex items-center justify-center">
-                <p className="text-black font-bold text-sm">20</p>
+                <p className="text-black font-bold text-sm">
+                  {isLoading ? "..." : user?.age}
+                </p>
               </div>
             </div>
 

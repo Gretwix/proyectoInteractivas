@@ -29,7 +29,7 @@ export default function LogIn() {
       return response.json();
     },
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token); // Guarda el token si tu backend lo devuelve así
+      localStorage.setItem("token", data.token); 
       navigate({ to: InicioRoute.to }); // Redirige a la página principal
     },
     onError: (error: any) => {
