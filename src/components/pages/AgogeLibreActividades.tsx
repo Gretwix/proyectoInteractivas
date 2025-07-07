@@ -193,10 +193,15 @@ export default function AgogeLibreActividades({
                           <button
                             className="px-3 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700 font-roboto"
                             onClick={() => {
+                              // Siempre lee la rutina actualizada de localStorage
+                              const libres = localStorage.getItem("agogeLibreRutinas");
+                              let rutinasLibres = libres ? JSON.parse(libres) : [];
+                              const rutinaActual = rutinasLibres[idx];
+                              if (!rutinaActual || !rutinaActual.titulo) return;
                               const stored = localStorage.getItem("agogeInicioRutinas");
                               let rutinas = stored ? JSON.parse(stored) : [];
-                              if (!rutinas.some((r: any) => r.titulo === rutinas[idx].titulo)) {
-                                rutinas.push({ titulo: rutinas[idx].titulo, descripcion: rutinas[idx].descripcion });
+                              if (!rutinas.some((r: any) => r.titulo === rutinaActual.titulo)) {
+                                rutinas.push({ titulo: rutinaActual.titulo, descripcion: rutinaActual.descripcion });
                                 localStorage.setItem("agogeInicioRutinas", JSON.stringify(rutinas));
                               }
                             }}
