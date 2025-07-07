@@ -30,7 +30,7 @@ async function actualizarPuntos(userId: number, puntos: number, token: string) {
   return response.json();
 }
 
-export default function Inicio({ botones, agregarRutina }: InicioProps) {
+export default function Inicio({ botones}: InicioProps) {
   // Estado para manejar los checkboxes, inicializado desde localStorage
   const [checkboxState, setCheckboxState] = useState(() => {
     const savedState = localStorage.getItem("checkboxState");
