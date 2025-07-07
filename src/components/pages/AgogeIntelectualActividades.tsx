@@ -1,4 +1,5 @@
 import Layout from "../ui/Layout";
+import { useNavigate } from "@tanstack/react-router";
 
 const actividades = [
   {
@@ -22,79 +23,91 @@ const actividades = [
   },
 ];
 
-const icons = [
-  <svg
-    key="eye"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-5 h-5 object-contain"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M2.036 12.322A1.012 1.012 0 012 12c0-.114.014-.225.036-.322C3.432 7.354 7.523 4.5 12 4.5c4.478 0 8.569 2.854 9.964 7.178.022.097.036.208.036.322 0 .114-.014.225-.036.322C20.568 16.646 16.477 19.5 12 19.5c-4.478 0-8.569-2.854-9.964-7.178z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    />
-  </svg>,
-  <svg
-    key="share"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-5 h-5 object-contain"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M8.25 12v.008v-.008zm7.5 0v.008v-.008zm-7.5 0a7.5 7.5 0 0114.25-2.25m-14.25 2.25A7.5 7.5 0 0112 4.5m0 0a7.5 7.5 0 017.5 7.5m-7.5-7.5v15m0 0A7.5 7.5 0 014.5 12m7.5 7.5A7.5 7.5 0 0021 12"
-    />
-  </svg>,
-  <svg
-    key="trash"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-5 h-5 object-contain"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M6 18L18 6M6 6l12 12"
-    />
-  </svg>,
-  <svg
-    key="chat"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-5 h-5 object-contain"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M7.5 8.25h9m-9 3.75h6M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-    />
-  </svg>,
-];
-
 export default function AgogeIntelectualActividades({
   onBack,
 }: {
   onBack: () => void;
 }) {
+  const navigate = useNavigate();
+
+  const icons = [
+    <button key="eye" className="p-2 rounded hover:bg-gray-200">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-5 h-5 object-contain"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M2.036 12.322A1.012 1.012 0 012 12c0-.114.014-.225.036-.322C3.432 7.354 7.523 4.5 12 4.5c4.478 0 8.569 2.854 9.964 7.178.022.097.036.208.036.322 0 .114-.014.225-.036.322C20.568 16.646 16.477 19.5 12 19.5c-4.478 0-8.569-2.854-9.964-7.178z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+        />
+      </svg>
+    </button>,
+    <button key="share" className="p-2 rounded hover:bg-gray-200">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-5 h-5 object-contain"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M8.25 12v.008v-.008zm7.5 0v.008v-.008zm-7.5 0a7.5 7.5 0 0114.25-2.25m-14.25 2.25A7.5 7.5 0 0112 4.5m0 0a7.5 7.5 0 017.5 7.5m-7.5-7.5v15m0 0A7.5 7.5 0 014.5 12m7.5 7.5A7.5 7.5 0 0021 12"
+        />
+      </svg>
+    </button>,
+    <button key="trash" className="p-2 rounded hover:bg-gray-200">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-5 h-5 object-contain"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>,
+    <button
+      key="chat"
+      className="p-2 rounded hover:bg-gray-200"
+      onClick={() => {
+        navigate({ to: "/comentarios" });
+      }}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-5 h-5 object-contain"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M7.5 8.25h9m-9 3.75h6M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    </button>,
+  ];
+  
   return (
     <Layout>
       <div className="min-h-screen bg-white flex flex-col justify-between">
@@ -154,8 +167,14 @@ export default function AgogeIntelectualActividades({
                     const stored = localStorage.getItem("agogeInicioRutinas");
                     let rutinas = stored ? JSON.parse(stored) : [];
                     if (!rutinas.some((r: any) => r.titulo === act.titulo)) {
-                      rutinas.push({ titulo: act.titulo, descripcion: act.descripcion });
-                      localStorage.setItem("agogeInicioRutinas", JSON.stringify(rutinas));
+                      rutinas.push({
+                        titulo: act.titulo,
+                        descripcion: act.descripcion,
+                      });
+                      localStorage.setItem(
+                        "agogeInicioRutinas",
+                        JSON.stringify(rutinas)
+                      );
                     }
                   }}
                 >

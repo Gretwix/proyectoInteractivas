@@ -60,7 +60,11 @@ export default function Navigation() {
         </button>
         <button
           className="text-white hover:text-gray-400 text-2xl py-2 px-8 rounded transition cursor-pointer mb-10"
-          onClick={() => setMenuOpen(false)}
+          onClick={() =>{ 
+            setMenuOpen(false);
+            navigate({ to: "/ranking" });
+          }}
+          
         >
           Progreso
         </button>
