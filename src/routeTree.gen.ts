@@ -12,9 +12,11 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as RankingRouteImport } from './routes/ranking'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as EditarperfilRouteImport } from './routes/editarperfil'
+import { Route as ComentariosRouteImport } from './routes/comentarios'
 import { Route as ActividadesRouteImport } from './routes/actividades'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as InicioRouteImport } from './routes/Inicio'
@@ -23,6 +25,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RankingRoute = RankingRouteImport.update({
+  id: '/ranking',
+  path: '/ranking',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -38,6 +45,11 @@ const LoginRoute = LoginRouteImport.update({
 const EditarperfilRoute = EditarperfilRouteImport.update({
   id: '/editarperfil',
   path: '/editarperfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComentariosRoute = ComentariosRouteImport.update({
+  id: '/comentarios',
+  path: '/comentarios',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ActividadesRoute = ActividadesRouteImport.update({
@@ -66,9 +78,11 @@ export interface FileRoutesByFullPath {
   '/Inicio': typeof InicioRoute
   '/about': typeof AboutRoute
   '/actividades': typeof ActividadesRoute
+  '/comentarios': typeof ComentariosRoute
   '/editarperfil': typeof EditarperfilRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/ranking': typeof RankingRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRoutesByTo {
@@ -76,9 +90,11 @@ export interface FileRoutesByTo {
   '/Inicio': typeof InicioRoute
   '/about': typeof AboutRoute
   '/actividades': typeof ActividadesRoute
+  '/comentarios': typeof ComentariosRoute
   '/editarperfil': typeof EditarperfilRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/ranking': typeof RankingRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRoutesById {
@@ -87,9 +103,11 @@ export interface FileRoutesById {
   '/Inicio': typeof InicioRoute
   '/about': typeof AboutRoute
   '/actividades': typeof ActividadesRoute
+  '/comentarios': typeof ComentariosRoute
   '/editarperfil': typeof EditarperfilRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
+  '/ranking': typeof RankingRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRouteTypes {
@@ -99,9 +117,11 @@ export interface FileRouteTypes {
     | '/Inicio'
     | '/about'
     | '/actividades'
+    | '/comentarios'
     | '/editarperfil'
     | '/login'
     | '/profile'
+    | '/ranking'
     | '/register'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -109,9 +129,11 @@ export interface FileRouteTypes {
     | '/Inicio'
     | '/about'
     | '/actividades'
+    | '/comentarios'
     | '/editarperfil'
     | '/login'
     | '/profile'
+    | '/ranking'
     | '/register'
   id:
     | '__root__'
@@ -119,9 +141,11 @@ export interface FileRouteTypes {
     | '/Inicio'
     | '/about'
     | '/actividades'
+    | '/comentarios'
     | '/editarperfil'
     | '/login'
     | '/profile'
+    | '/ranking'
     | '/register'
   fileRoutesById: FileRoutesById
 }
@@ -130,9 +154,11 @@ export interface RootRouteChildren {
   InicioRoute: typeof InicioRoute
   AboutRoute: typeof AboutRoute
   ActividadesRoute: typeof ActividadesRoute
+  ComentariosRoute: typeof ComentariosRoute
   EditarperfilRoute: typeof EditarperfilRoute
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
+  RankingRoute: typeof RankingRoute
   RegisterRoute: typeof RegisterRoute
 }
 
@@ -166,6 +192,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ActividadesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/comentarios': {
+      id: '/comentarios'
+      path: '/comentarios'
+      fullPath: '/comentarios'
+      preLoaderRoute: typeof ComentariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/editarperfil': {
       id: '/editarperfil'
       path: '/editarperfil'
@@ -185,6 +218,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ranking': {
+      id: '/ranking'
+      path: '/ranking'
+      fullPath: '/ranking'
+      preLoaderRoute: typeof RankingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -233,6 +273,15 @@ declare module './routes/actividades' {
     FileRoutesByPath['/actividades']['fullPath']
   >
 }
+declare module './routes/comentarios' {
+  const createFileRoute: CreateFileRoute<
+    '/comentarios',
+    FileRoutesByPath['/comentarios']['parentRoute'],
+    FileRoutesByPath['/comentarios']['id'],
+    FileRoutesByPath['/comentarios']['path'],
+    FileRoutesByPath['/comentarios']['fullPath']
+  >
+}
 declare module './routes/editarperfil' {
   const createFileRoute: CreateFileRoute<
     '/editarperfil',
@@ -260,6 +309,15 @@ declare module './routes/profile' {
     FileRoutesByPath['/profile']['fullPath']
   >
 }
+declare module './routes/ranking' {
+  const createFileRoute: CreateFileRoute<
+    '/ranking',
+    FileRoutesByPath['/ranking']['parentRoute'],
+    FileRoutesByPath['/ranking']['id'],
+    FileRoutesByPath['/ranking']['path'],
+    FileRoutesByPath['/ranking']['fullPath']
+  >
+}
 declare module './routes/register' {
   const createFileRoute: CreateFileRoute<
     '/register',
@@ -275,9 +333,11 @@ const rootRouteChildren: RootRouteChildren = {
   InicioRoute: InicioRoute,
   AboutRoute: AboutRoute,
   ActividadesRoute: ActividadesRoute,
+  ComentariosRoute: ComentariosRoute,
   EditarperfilRoute: EditarperfilRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
+  RankingRoute: RankingRoute,
   RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,6 +1,10 @@
 import Layout from "../ui/Layout";
 import { useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+
+import { TaskBadge } from "../ui/TaskBadge";
+import { DayBadge } from "../ui/DayBadge";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -47,6 +51,19 @@ export default function Profile() {
       alert(error.message || "Error al cerrar sesión");
     },
   });
+
+  // State para los badges
+  const [taskBadgeCount, setTaskBadgeCount] = useState(0);
+  const [dayBadgeCount, setDayBadgeCount] = useState(0);
+
+  // Leer valores de localStorage al montar el componente
+  useEffect(() => {
+    const taskBadge = localStorage.getItem("taskBadge");
+    const dayBadge = localStorage.getItem("dayBadge");
+
+    setTaskBadgeCount(taskBadge ? parseInt(taskBadge, 10) : 0);
+    setDayBadgeCount(dayBadge ? parseInt(dayBadge, 10) : 0);
+  }, []);
 
   return (
     <Layout>
@@ -99,6 +116,14 @@ export default function Profile() {
               <div className="flex-1 flex items-center justify-center">
                 <p className="text-black font-bold text-sm">Soldado</p>
               </div>
+            </div>
+          </div>
+          {/* Insignias de logros */}
+          <div className="flex flex-col items-center mb-10 w-full max-w-md bg-gray-200 p-6 rounded-lg shadow-md">
+            <h2 className="text-lg font-bold mb-2 text-yellow-600">Insignias</h2>
+            <div className="flex gap-5 justify-center">
+              <TaskBadge count={taskBadgeCount} />
+              <DayBadge count={dayBadgeCount} />
             </div>
           </div>
 
