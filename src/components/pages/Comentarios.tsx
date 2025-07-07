@@ -8,7 +8,6 @@ function getTodayFormatted() {
   const anio = fecha.getFullYear();
   return `${dia} ${mes} ${anio}`;
 }
-//Utilize la IA para que los comentarios quedaran guarddos en el LocalStorage - A
 export default function ComentariosPage() {
   const [comments, setComments] = useState<{ comment: string; date: string }[]>(
     () => {

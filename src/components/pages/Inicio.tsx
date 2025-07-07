@@ -83,7 +83,6 @@ export default function Inicio({ botones}: InicioProps) {
   };
 
   //la parte de actualizar puntos al usuario logueado la tuve que hacer con IA porque no me salía
-  // Generado con IA - A
   const handleActualizar = async (puntos: number) => {
     const token = localStorage.getItem("token");
     if (!token) {
